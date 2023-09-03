@@ -1,20 +1,248 @@
-
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-}
-
-
 body {
+  box-sizing: border-box;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+  font-size: 1em;
+  background-size: cover;
+  text-align: center;
+  background-color: #171717;
+  min-width: 100vw;
   min-height: 100vh;
+  color: #dadada;
+  position: relative;
+  font-family: 'Ubuntu', sans-serif;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.app {
+  max-width: 605px;
+  margin: 20px auto;
+}
+
+.north-icon {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+}
+
+.execution {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.execution button {
+  min-width: 100px;
+}
+
+.control-panel .wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.control-panel {
+  position: relative;
+  background-color: #212121;
+  color: #fff;
+  margin: 20px 0;
+  padding: 10px;
+}
+
+.control-panel .commands {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 3px;
+}
+
+.control-panel .commands .command-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.control-panel .commands .single-col button {
+  height: 63px;
+}
+
+.control-panel button {
+  font-size: 1rem;
+  background-color: #263238;
+  color: #fff;
+  border-radius: 2px;
+  border: none;
+  padding: 5px 0;
+  cursor: pointer;
+  min-height: 30px;
+  min-width: 100px;
+  font-weight: bold;
+}
+
+.control-panel button.error {
+  background-color: tomato;
+}
+
+.control-panel button.success {
+  background-color: #4caf50;
+}
+
+.control-panel .command {
+  background-color: #171717;
+  padding: 5px;
+  color: #999;
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: 5px;
+  border: 0;
+  outline: 0;
+  width: 50%;
+}
+
+.samples {
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.samples .samples-title {
+  opacity: 0.5;
+  margin: 0;
+}
+
+.samples ul {
+  margin-left: 20px;
+  padding: 0;
+}
+
+.samples button {
+  background: transparent;
+  border-bottom: 1px solid;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 2px;
+}
+
+.samples ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.samples ul li:after {
+  content: ',';
+  display: inline-block;
+}
+
+.samples ul li:last-child:after {
+  display: none;
+}
+
+/* planet board */
+.mars {
+  display: grid;
+  grid-column-gap: 1px;
+  grid-row-gap: 1px;
+  list-style: none;
+  max-width: 350px;
+  padding: 0;
+}
+
+.cell {
+  position: relative;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  background-color: #263238;
+  transition: background 0.2s;
+  min-height: 70px;
+}
+
+.cell label {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  color: #fff;
+  opacity: 0.1;
+  font-size: 0.8rem;
+}
+
+.cell.path:before {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: #37474f;
+  animation: zoomIn 0.2s;
+  z-index: 0;
+}
+
+.cell.path label {
+  color: #fff;
+}
+
+.cell.end:before {
+  display: none;
+}
+
+.cell.end {
+  background-color: #4caf50;
+}
+
+.cell.error {
+  background-color: #f44336;
+}
+
+.cell.end label,
+.cell.error label {
+  opacity: 1;
+}
+
+.rover {
+  font-size: 3rem;
+  transition: all 0.1s;
+  color: #fafafa;
+  z-index: 1;
+}
+
+.rover.SOUTH {
+  transform: rotate(180deg);
+}
+
+.rover.WEST {
+  transform: rotate(270deg);
+}
+
+.rover.NORTH {
+  transform: rotate(0deg);
+}
+
+.rover.EAST {
+  transform: rotate(90deg);
+}
+
+.rover.ghost {
+  opacity: 0.2;
+}
+
+@media (min-width: 510px) {
+  .mars {
+    max-width: 510px;
+    width: 510px;
+  }
+
+  .cell {
+    width: 100px;
+    height: 100px;
+  }
 }
